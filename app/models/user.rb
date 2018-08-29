@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
     self.where(email: oauth_email).first_or_create do |user|
       user.name = oauth_name
       user.uid = oauth_uid
-      user.email = oauth_email
     end
   end
 end
