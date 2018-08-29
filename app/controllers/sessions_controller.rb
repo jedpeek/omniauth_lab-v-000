@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       user = User.find_by(name: params[:name])
         if user && user.authenticate(params[:password])
           session[:user_id] = user.id
-      redirect_to controller:'sessions', action:'create'
+      return redirect_to controller:'sessions', action:'create'
         else
           render 'sessions/new'
         end
