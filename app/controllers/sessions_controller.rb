@@ -9,9 +9,8 @@ class SessionsController < ApplicationController
       user = User.find_or_create_by_omniauth(auth_hash)
       session[:user_id] = user.id
       return redirect_to controller:'sessions', action:'create'
-        else
-          render 'sessions/new'
-        end
+    else
+      render 'sessions/new'
       end
     end
 
