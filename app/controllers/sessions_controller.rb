@@ -12,10 +12,10 @@ class SessionsController < ApplicationController
       redirect_to controller:'sessions', action:'create'
     else
       #standard login
-      user = User.find_by(username: params[:username])
+      user = User.find_by(uid: params[:username])
         if user && user.authenticate(params[:password])
           session[:user_id] = user.id
-          redirect_to controller:'users', action:'index'
+      redirect_to controller:'sessions', action:'create'
         else
           render 'sessions/new'
         end
