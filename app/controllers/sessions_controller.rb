@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   def create
     if auth_hash = request.env['omniauth.auth']
-      user = User.find_or_create_by_omniauth(auth_hash)
+      user = User.find_or_create_by(uid: auth[:uid])
       session[:user_id] = user.id
       return redirect_to controller:'sessions', action:'create'
     else
