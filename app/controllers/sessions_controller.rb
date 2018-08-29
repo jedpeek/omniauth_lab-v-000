@@ -1,14 +1,12 @@
 class SessionsController < ApplicationController
 
   def create
-    if auth_hash = request.env['omniauth.auth']
+    if auth = request.env['omniauth.auth']
       user = User.find_or_create_by(uid: auth[:uid])
         user.name = auth['info']['name']
         session[:user_id] = user.try(:id)
       return redirect_to controller:'sessions', action:'create'
-    else
-      render 'sessions/new'
-      end
+
     end
 
 
