@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
     where(uid: oauth_uid).first_or_create do |user|
       user.uid = oauth_uid
       user.name = oauth_name
-      user.password = SecureRandom.hex(10)
     end
   end
 end
