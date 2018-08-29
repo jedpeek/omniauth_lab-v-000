@@ -8,8 +8,8 @@ class SessionsController < ApplicationController
     if auth_hash = request.env['omniauth.auth']
       user = User.find_or_create_by_omniauth(auth_hash)
       user.save
-      session[:user_id] = user.uid
-      redirect_to controller:'users', action:'index'
+      session[:user_id] = user.id
+      redirect_to controller:'sessions', action:'create'
     else
       #standard login
       user = User.find_by(username: params[:username])
