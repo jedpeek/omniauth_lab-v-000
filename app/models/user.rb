@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
     oauth_name = auth_hash['info']['nickname']
     #first_or_create will always return an instance of a user
     where(uid: oauth_uid).first_or_create do |user|
-      user.uid = oauth_email
-      user.username = oauth_username
+      user.uid = oauth_uid
+      user.name = oauth_name
       user.password = SecureRandom.hex(10)
     end
   end
