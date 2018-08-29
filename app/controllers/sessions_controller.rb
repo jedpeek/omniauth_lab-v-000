@@ -9,12 +9,6 @@ class SessionsController < ApplicationController
       user = User.find_or_create_by_omniauth(auth_hash)
       session[:user_id] = user.id
       return redirect_to controller:'sessions', action:'create'
-    else
-      #standard login
-      user = User.find_by(name: params[:name])
-        if user && user.authenticate(params[:password])
-          session[:user_id] = user.id
-      return redirect_to controller:'sessions', action:'create'
         else
           render 'sessions/new'
         end
