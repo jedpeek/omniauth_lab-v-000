@@ -1,10 +1,5 @@
 class User < ActiveRecord::Base
 
-  class User < ApplicationRecord
-  validates :email, presence: true
-  validates :email, uniqueness: true
-  has_secure_password
-
   def self.find_or_create_by_omniauth(auth_hash)
     oauth_email = auth_hash["info"]["email"]
     oauth_username = auth_hash['info']['nickname']
